@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Manifest° Atelier — Moda afro-contemporânea artesanal. Onde ancestralidade se torna arte vestível.">
+<title>Manifest° Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  @font-face {
+    font-family: 'canela';
+    src: url('fonts/canela_bold.otf') format('opentype'), url('fonts/canela_light.otf') format('opentype'), url('fonts/canela_roman.otf');
+    font-family: 'corbel';
+    src: url('fonts/CORBEL.TTF') format('truetype'), url('fonts/Corbel\ Bold.ttf') format('truetype'), url('fonts/CORBELB.TTF');
+  }
+  :root {
+    --brown: #4B3621;
+    --brown-deep: #2d1f10;
+    --terracota: #B24C39;
+    --terracota-light: #c96347;
+    --cream: #F5F5DC;
+    --cream-warm: #f0ead2;
+    --cream-deep: #e8dfc4;
+    --white: #fdfaf4;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--cream);
+    color: var(--brown);
+    font-family: 'corbel', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--terracota);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, opacity 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1px solid var(--terracota);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.2s;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--terracota); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s;
+    mix-blend-mode: normal;
+  }
+  nav.scrolled {
+    background: rgba(245,245,220,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid rgba(75,54,33,0.15);
+  }
+  .nav-logo {
+    font-family: 'canela', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    color: var(--brown);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .nav-logo-icon {
+    width: 40px; height: auto;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--brown); text-decoration: none; font-weight: 500;
+    position: relative; padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--terracota);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--terracota) !important;
+    color: var(--cream) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 2px;
+    letter-spacing: 0.15em !important;
+  }
+  .nav-cta::after { display: none !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--brown);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image: url('images/branco\ sf.png');
+    background-size: 60px 80px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--terracota); font-weight: 500;
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--terracota);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 2.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracota);
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem; letter-spacing: 0.1em;
+    color: rgba(245,245,220,0.55);
+    line-height: 1.8;
+    max-width: 340px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta-group { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-primary {
+    background: var(--terracota);
+    color: var(--cream);
+    padding: 0.9rem 2rem;
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    border: none; cursor: none; text-decoration: none;
+    display: inline-block;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.1);
+    transition: left 0.3s ease;
+  }
+  .btn-primary:hover::before { left: 100%; }
+  .btn-primary:hover { background: var(--terracota-light); }
+
+  .btn-ghost {
+    color: rgba(245,245,220,0.7);
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Syne', sans-serif; font-weight: 500;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--cream); }
+  .btn-ghost svg { transition: transform 0.2s; }
+  .btn-ghost:hover svg { transform: translateX(4px); }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-buzio-svg {
+    width: min(380px, 80%);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(8rem, 14vw, 16rem);
+    font-weight: 300;
+    color: rgba(75,54,33,0.04);
+    letter-spacing: -0.02em;
+    user-select: none;
+    white-space: nowrap;
+    bottom: -1rem; right: -2rem;
+    line-height: 1;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; z-index: 10;
+  }
+  .hero-scroll span {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(75,54,33,0.4);
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--terracota), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  .hero-counter {
+    position: absolute; bottom: 5rem; right: 4rem;
+    text-align: right;
+  }
+  .counter-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300;
+    color: var(--brown); line-height: 1;
+  }
+  .counter-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(75,54,33,0.45); margin-top: 0.25rem;
+  }
+
+  /* MANIFESTO */
+  #manifesto {
+    padding: 8rem 4rem;
+    background: var(--brown);
+    position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 4rem; align-items: center;
+  }
+
+  .manifesto-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(245,245,220,0.3);
+    font-weight: 500;
+  }
+
+  .manifesto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--cream);
+  }
+  .manifesto-text em {
+    font-style: italic; color: var(--terracota);
+  }
+  .manifesto-text strong {
+    font-weight: 600;
+  }
+
+  .manifesto-deco {
+    position: absolute; right: 0; top: 0; bottom: 0;
+    width: 35%;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='0 0 60 80'%3E%3Cellipse cx='30' cy='32' rx='16' ry='22' stroke='%23F5F5DC' stroke-width='1.5' fill='none'/%3E%3Cpath d='M24 20 Q30 10 36 20' stroke='%23F5F5DC' stroke-width='1' fill='none'/%3E%3Cpath d='M22 28 Q30 22 38 28 M22 32 Q30 26 38 32 M22 36 Q30 30 38 36' stroke='%23F5F5DC' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='30' cy='57' r='4' stroke='%23F5F5DC' stroke-width='1' fill='none'/%3E%3Cline x1='30' y1='61' x2='30' y2='72' stroke='%23F5F5DC' stroke-width='0.8'/%3E%3C/svg%3E");
+    background-size: 60px 80px;
+    pointer-events: none;
+  }
+
+  /* SOBRE */
+  #sobre {
+    padding: 8rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    background: var(--cream);
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .sobre-img-frame {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--brown);
+    position: relative; overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .sobre-img-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='0 0 60 80'%3E%3Cellipse cx='30' cy='32' rx='16' ry='22' stroke='%23F5F5DC' stroke-width='1.5' fill='none'/%3E%3Cpath d='M24 20 Q30 10 36 20' stroke='%23F5F5DC' stroke-width='1' fill='none'/%3E%3Cpath d='M22 28 Q30 22 38 28 M22 32 Q30 26 38 32 M22 36 Q30 30 38 36' stroke='%23F5F5DC' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='30' cy='57' r='4' stroke='%23F5F5DC' stroke-width='1' fill='none'/%3E%3Cline x1='30' y1='61' x2='30' y2='72' stroke='%23F5F5DC' stroke-width='0.8'/%3E%3C/svg%3E");
+    background-size: 50px 66px;
+  }
+
+  .sobre-icon-center {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .sobre-buzio {
+    width: 160px; opacity: 0.9;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .sobre-accent {
+    position: absolute;
+    right: -1.5rem; bottom: 2rem;
+    background: var(--terracota);
+    color: var(--cream);
+    padding: 1.5rem;
+    width: 140px;
+    text-align: center;
+  }
+  .sobre-accent-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; line-height: 1;
+    display: block;
+  }
+  .sobre-accent-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    margin-top: 0.3rem; display: block;
+  }
+
+  .sobre-content {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--terracota); font-weight: 500;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 30px; height: 1px; background: var(--terracota);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--brown);
+  }
+  .section-title em { font-style: italic; color: var(--terracota); }
+
+  .sobre-body {
+    font-size: 0.95rem; line-height: 1.9;
+    color: rgba(75,54,33,0.7);
+    font-weight: 400;
+  }
+
+  .sobre-values {
+    display: flex; flex-direction: column; gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .value-item {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.82rem; letter-spacing: 0.1em;
+    color: var(--brown); font-weight: 500;
+  }
+  .value-dot {
+    width: 6px; height: 6px;
+    background: var(--terracota); border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* SERVIÇOS */
+  #servicos {
+    padding: 8rem 4rem;
+    background: var(--cream-warm);
+  }
+
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 0.5px solid rgba(75,54,33,0.15);
+  }
+
+  .service-card {
+    padding: 2.5rem;
+    border-right: 0.5px solid rgba(75,54,33,0.15);
+    border-bottom: 0.5px solid rgba(75,54,33,0.15);
+    transition: background 0.3s, color 0.3s;
+    position: relative; overflow: hidden;
+    cursor: none;
+  }
+  .service-card:nth-child(3n) { border-right: none; }
+  .service-card:nth-last-child(-n+3) { border-bottom: none; }
+
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--brown);
+    transform: translateY(101%);
+    transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
+    z-index: 0;
+  }
+  .service-card:hover::before { transform: translateY(0); }
+
+  .service-card > * { position: relative; z-index: 1; }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; font-weight: 400;
+    color: var(--terracota);
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
+
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 1.5rem;
+    transition: filter 0.3s;
+  }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+
+  .service-desc {
+    font-size: 0.85rem; line-height: 1.8;
+    color: rgba(75,54,33,0.65);
+    transition: color 0.3s;
+  }
+
+  .service-arrow {
+    margin-top: 2rem;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--terracota);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.3s, gap 0.2s;
+  }
+
+  .service-card:hover .service-num,
+  .service-card:hover .service-title,
+  .service-card:hover .service-desc,
+  .service-card:hover .service-arrow { color: var(--cream); }
+
+  .service-card:hover .service-arrow { gap: 0.75rem; color: var(--terracota); }
+
+  /* PROCESSO */
+  #processo {
+    padding: 8rem 4rem;
+    background: var(--brown);
+    position: relative; overflow: hidden;
+  }
+
+  .processo-header { margin-bottom: 5rem; }
+  .processo-header .section-title { color: var(--cream); }
+  .processo-header .section-eyebrow { color: var(--terracota); }
+
+  .processo-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+
+  .processo-steps::before {
+    content: '';
+    position: absolute; top: 2rem; left: 12%; right: 12%;
+    height: 1px; background: rgba(245,245,220,0.15);
+  }
+
+  .step {
+    padding: 0 1.5rem;
+    position: relative;
+  }
+
+  .step-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    border: 1px solid rgba(245,245,220,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem;
+    position: relative; background: var(--brown);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .step:hover .step-circle {
+    border-color: var(--terracota);
+    background: rgba(178,76,57,0.15);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400;
+    color: var(--terracota);
+  }
+
+  .step-title {
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 0.82rem; line-height: 1.8;
+    color: rgba(245,245,220,0.5);
+  }
+
+  /* NUMEROS */
+  #numeros {
+    padding: 5rem 4rem;
+    background: var(--terracota);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+
+  .numero-item {
+    padding: 2rem;
+    text-align: center;
+    border-right: 0.5px solid rgba(245,245,220,0.2);
+    position: relative;
+  }
+  .numero-item:last-child { border-right: none; }
+
+  .numero-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300; line-height: 1;
+    color: var(--cream);
+    display: block;
+  }
+
+  .numero-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(245,245,220,0.65);
+    margin-top: 0.5rem; display: block;
+  }
+
+  /* GALERIA */
+  #galeria {
+    padding: 8rem 0 8rem 4rem;
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .galeria-header { margin-bottom: 3rem; }
+
+  .galeria-track {
+    display: flex; gap: 1.5rem;
+    animation: trackScroll 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes trackScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .galeria-track:hover { animation-play-state: paused; }
+
+  .galeria-item {
+    width: 280px; height: 350px; flex-shrink: 0;
+    background: var(--brown);
+    position: relative; overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .galeria-item-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.5s ease;
+  }
+  .galeria-item:hover .galeria-item-inner { transform: scale(1.05); }
+
+  .galeria-item-bg {
+    position: absolute; inset: 0;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='0 0 60 80'%3E%3Cellipse cx='30' cy='32' rx='16' ry='22' stroke='%23F5F5DC' stroke-width='1.5' fill='none'/%3E%3Cpath d='M22 28 Q30 22 38 28 M22 32 Q30 26 38 32 M22 36 Q30 30 38 36' stroke='%23F5F5DC' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='30' cy='57' r='4' stroke='%23F5F5DC' stroke-width='1' fill='none'/%3E%3Cline x1='30' y1='61' x2='30' y2='72' stroke='%23F5F5DC' stroke-width='0.8'/%3E%3C/svg%3E");
+    background-size: 50px 66px;
+  }
+
+  .galeria-buzio-g {
+    width: 80px; opacity: 0.5;
+    position: relative; z-index: 1;
+  }
+
+  .galeria-item-label {
+    position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,245,220,0.6);
+  }
+
+  .galeria-item:nth-child(odd) { background: var(--brown); }
+  .galeria-item:nth-child(3n) { background: var(--terracota); }
+  .galeria-item:nth-child(4n) { background: #2d1f10; }
+
+  /* DEPOIMENTOS */
+  #depoimentos {
+    padding: 8rem 4rem;
+    background: var(--cream-warm);
+  }
+
+  .dep-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .dep-card {
+    padding: 2rem;
+    border: 0.5px solid rgba(75,54,33,0.15);
+    background: var(--cream);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .dep-card:hover {
+    border-color: var(--terracota);
+    transform: translateY(-4px);
+  }
+
+  .dep-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300;
+    color: var(--terracota); line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .dep-text {
+    font-size: 0.9rem; line-height: 1.8;
+    color: rgba(75,54,33,0.75);
+    margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-style: italic;
+  }
+
+  .dep-author {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .dep-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--brown);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: var(--cream);
+    font-weight: 600;
+  }
+
+  .dep-name {
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--brown);
+  }
+
+  .dep-role {
+    font-size: 0.72rem; color: rgba(75,54,33,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA FINAL */
+  #cta {
+    padding: 10rem 4rem;
+    background: var(--brown);
+    text-align: center; position: relative; overflow: hidden;
+  }
+
+  .cta-deco {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+
+  .cta-circle {
+    width: 600px; height: 600px; border-radius: 50%;
+    border: 0.5px solid rgba(245,245,220,0.06);
+    position: absolute;
+  }
+  .cta-circle:nth-child(2) { width: 800px; height: 800px; }
+  .cta-circle:nth-child(3) { width: 1000px; height: 1000px; }
+
+  .cta-content { position: relative; z-index: 1; }
+
+  .cta-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--terracota); font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .cta-eyebrow::before, .cta-eyebrow::after {
+    content: ''; width: 30px; height: 1px; background: var(--terracota);
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .cta-title em { font-style: italic; color: var(--terracota); }
+
+  .cta-sub {
+    font-size: 0.88rem; line-height: 1.8;
+    color: rgba(245,245,220,0.5);
+    max-width: 480px; margin: 0 auto 3rem;
+  }
+
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+  .btn-outline {
+    color: rgba(245,245,220,0.7);
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Syne', sans-serif; font-weight: 500;
+    text-decoration: none;
+    border: 0.5px solid rgba(245,245,220,0.25);
+    padding: 0.9rem 2rem;
+    transition: border-color 0.3s, color 0.3s;
+    cursor: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--cream); color: var(--cream); }
+
+  /* CONTATO */
+  #contato {
+    padding: 8rem 4rem;
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+  }
+
+  .contato-info { display: flex; flex-direction: column; gap: 3rem; }
+
+  .contato-item { display: flex; flex-direction: column; gap: 0.4rem; }
+  .contato-item-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--terracota); font-weight: 500;
+  }
+  .contato-item-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 300; color: var(--brown);
+  }
+
+  .contato-social { display: flex; gap: 1.5rem; align-items: center; }
+  .social-link {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(75,54,33,0.5); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .social-link:hover { color: var(--terracota); }
+
+  .contato-form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(75,54,33,0.5); font-weight: 500;
+  }
+  .form-input, .form-textarea {
+    background: transparent;
+    border: none; border-bottom: 0.5px solid rgba(75,54,33,0.25);
+    padding: 0.75rem 0;
+    font-family: 'Syne', sans-serif; font-size: 0.9rem;
+    color: var(--brown);
+    outline: none; cursor: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-bottom-color: var(--terracota);
+  }
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(75,54,33,0.3);
+  }
+  .form-textarea { height: 80px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--brown-deep);
+    padding: 4rem;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  }
+
+  .footer-brand { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 1.1rem; font-weight: 800;
+    letter-spacing: 0.15em; color: var(--cream);
+    text-decoration: none;
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; font-style: italic;
+    color: rgba(245,245,220,0.4); line-height: 1.6;
+    max-width: 260px;
+  }
+
+  .footer-col { display: flex; flex-direction: column; gap: 1.25rem; }
+  .footer-col-title {
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(245,245,220,0.3); font-weight: 500;
+  }
+  .footer-col a {
+    font-size: 0.82rem; color: rgba(245,245,220,0.55);
+    text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em;
+  }
+  .footer-col a:hover { color: var(--terracota); }
+
+  .footer-bottom {
+    background: var(--brown-deep);
+    border-top: 0.5px solid rgba(245,245,220,0.08);
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    color: rgba(245,245,220,0.25);
+  }
+
+  .footer-made {
+    font-size: 0.72rem; color: rgba(245,245,220,0.25);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .footer-made span { color: var(--terracota); }
+
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0; transform: translateX(-30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+
+  /* LOADING SCREEN */
+  #loader {
+    position: fixed; inset: 0;
+    background: var(--brown);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 2rem;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+
+  .loader-logo {
+    font-family: 'canela', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.3s forwards;
+  }
+
+  .loader-bar-wrap {
+    width: 200px; height: 1px;
+    background: rgba(245,245,220,0.15);
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.5s forwards;
+  }
+  .loader-bar {
+    height: 100%; width: 0;
+    background: var(--terracota);
+    animation: loadBar 3.8s ease 0.6s forwards;
+  }
+  @keyframes loadBar {
+    to { width: 100%; }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 1.5rem; }
+    .nav-links { display: none; }
+
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 8rem 1.5rem 3rem; min-height: 70vh; }
+    .hero-right { min-height: 40vh; }
+    .hero-buzio-svg { width: 200px; }
+    .hero-counter { right: 1.5rem; }
+    .hero-scroll { display: none; }
+
+    #manifesto { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 2rem; }
+    .manifesto-label { display: none; }
+
+    #sobre { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .sobre-visual { max-width: 320px; margin: 0 auto; }
+
+    #servicos { padding: 5rem 1.5rem; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none !important; }
+    .service-card:last-child { border-bottom: none; }
+
+    #processo { padding: 5rem 1.5rem; }
+    .processo-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .processo-steps::before { display: none; }
+
+    #numeros { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; }
+    .numero-item { border-bottom: 0.5px solid rgba(245,245,220,0.2); }
+
+    #galeria { padding: 5rem 0 5rem 1.5rem; }
+
+    .dep-grid { grid-template-columns: 1fr; }
+    #depoimentos { padding: 5rem 1.5rem; }
+
+    #cta { padding: 6rem 1.5rem; }
+
+    #contato { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 4rem; }
+
+    footer { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img width="300" height="auto" src="images/branco sf.png" alt="" style="opacity:0;animation:fadeIn 0.5s ease 0.1s forwards">
+  <!-- <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0;animation:fadeIn 0.5s ease 0.1s forwards">
+    <ellipse cx="30" cy="32" rx="16" ry="22" stroke="#F5F5DC" stroke-width="1.8"/>
+    <path d="M24 20 Q30 9 36 20" stroke="#F5F5DC" stroke-width="1.3" fill="none"/>
+    <path d="M21 27 Q30 20 39 27" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+    <path d="M21 31 Q30 24 39 31" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+    <path d="M21 35 Q30 28 39 35" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+    <path d="M21 39 Q30 32 39 39" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+    <path d="M22 43 Q30 37 38 43" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+    <circle cx="32" cy="56" r="4.5" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+    <line x1="32" y1="60.5" x2="32" y2="72" stroke="#B24C39" stroke-width="1"/>
+    <ellipse cx="32" cy="58" rx="2" ry="1.5" stroke="#B24C39" stroke-width="0.8" fill="none"/>
+  </svg> -->
+  <div class="loader-logo">Manifest°</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/marron sf.png" alt="" class="nav-logo-icon">
+    <!-- <svg class="nav-logo-icon" viewBox="0 0 40 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="20" cy="21" rx="11" ry="15" stroke="#4B3621" stroke-width="1.5"/>
+      <path d="M16 13 Q20 6 24 13" stroke="#4B3621" stroke-width="1.2" fill="none"/>
+      <path d="M14 18 Q20 13 26 18 M14 21 Q20 16 26 21 M14 24 Q20 19 26 24" stroke="#4B3621" stroke-width="0.8" fill="none"/>
+      <circle cx="22" cy="38" r="3" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+      <line x1="22" y1="41" x2="22" y2="50" stroke="#B24C39" stroke-width="1"/>
+    </svg> -->
+    MANIFEST°
+  </a>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-pattern"></div>
+    <div class="hero-eyebrow">Atelier Afro-Contemporâneo</div>
+    <h1 class="hero-title">
+      Onde<br>
+      ancestralidade<br>
+      <em>se manifesta</em>
+    </h1>
+    <p class="hero-subtitle">
+      Moda artesanal com raízes <span>GUINEENSE</span>. Cada peça é um ritual, cada costura um manifesto de identidade e pertencimento.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#servicos" class="btn-primary">Explorar Coleção</a>
+      <a href="#sobre" class="btn-ghost">
+        Nossa história
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <path d="M0 5h14M10 1l4 4-4 4" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-text">búzio</div>
+    <div class="hero-visual">
+      <img src="images/marron sf.png" class="hero-buzio-svg" alt="">
+      <!-- <svg class="hero-buzio-svg" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="140" cy="148" rx="76" ry="105" stroke="#B24C39" stroke-width="3"/>
+        <path d="M108 90 Q140 45 172 90" stroke="#B24C39" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M97 118 Q140 96 183 118" stroke="#B24C39" stroke-width="1.8" fill="none"/>
+        <path d="M95 128 Q140 106 185 128" stroke="#B24C39" stroke-width="1.8" fill="none"/>
+        <path d="M94 138 Q140 116 186 138" stroke="#B24C39" stroke-width="1.8" fill="none"/>
+        <path d="M94 148 Q140 126 186 148" stroke="#B24C39" stroke-width="1.8" fill="none"/>
+        <path d="M95 158 Q140 136 185 158" stroke="#B24C39" stroke-width="1.8" fill="none"/>
+        <path d="M96 168 Q140 146 184 168" stroke="#B24C39" stroke-width="1.5" fill="none"/>
+        <path d="M98 178 Q140 158 182 178" stroke="#B24C39" stroke-width="1.5" fill="none"/>
+        <path d="M102 188 Q140 170 178 188" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <path d="M108 198 Q140 182 172 198" stroke="#B24C39" stroke-width="1" fill="none"/>
+        <circle cx="158" cy="262" r="20" stroke="#4B3621" stroke-width="1.8" fill="none"/>
+        <ellipse cx="158" cy="265" rx="9" ry="7" stroke="#4B3621" stroke-width="1.2" fill="none"/>
+        <line x1="158" y1="282" x2="158" y2="330" stroke="#4B3621" stroke-width="1.5"/>
+        <circle cx="160" cy="270" r="2.5" fill="#4B3621" opacity="0.4"/>
+      </svg> -->
+    </div>
+    <div class="hero-counter">
+      <span class="counter-num" id="c1">0</span>
+      <div class="counter-label">peças artesanais</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-deco"></div>
+  <div class="manifesto-label reveal">Manifesto</div>
+  <div class="manifesto-text reveal delay-2">
+    Não fazemos roupas.<br>
+    Fazemos <em>memória vestível</em>.<br>
+    Cada búzio costurado é uma<br>
+    <strong>conversa com os ancestrais</strong><br>
+    traduzida em forma contemporânea.
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-visual reveal-left">
+    <div class="sobre-img-frame">
+      <div class="sobre-img-inner"></div>
+      <div class="sobre-icon-center">
+        <svg class="sobre-buzio" viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="80" cy="82" rx="44" ry="60" stroke="#F5F5DC" stroke-width="2"/>
+          <path d="M62 50 Q80 25 98 50" stroke="#F5F5DC" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M56 67 Q80 54 104 67 M55 74 Q80 60 105 74 M55 81 Q80 67 105 81 M55 88 Q80 74 105 88 M56 95 Q80 81 104 95 M57 102 Q80 88 103 102" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <circle cx="90" cy="148" r="11" stroke="#B24C39" stroke-width="1.5" fill="none"/>
+          <line x1="90" y1="159" x2="90" y2="188" stroke="#B24C39" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="sobre-accent">
+      <span class="sobre-accent-num">+200</span>
+      <span class="sobre-accent-label">clientes satisfeitas</span>
+    </div>
+  </div>
+
+  <div class="sobre-content">
+    <div class="section-eyebrow reveal">Nossa história</div>
+    <h2 class="section-title reveal delay-1">
+      Um atelier que<br><em>manifesta</em> identidade
+    </h2>
+    <p class="sobre-body reveal delay-2">
+      A Manifest° Atelier nasceu da crença de que moda é muito mais que estética — é política, é espiritualidade, é pertencimento. Nossa fundadora, movida pelas raízes afro-brasileiras e pela arte da costura ancestral, criou um espaço onde cada peça dialoga com a história e o presente.
+    </p>
+    <p class="sobre-body reveal delay-3">
+      O búzio, símbolo central da nossa identidade, une dois mundos: o sagrado da tradição afro-brasileira e o ofício da costura. A agulha que o atravessa é nossa assinatura — artesanato que costura passado e futuro.
+    </p>
+    <div class="sobre-values reveal delay-4">
+      <div class="value-item"><div class="value-dot"></div>Moda afro-contemporânea artesanal</div>
+      <div class="value-item"><div class="value-dot"></div>Valorização da identidade negra</div>
+      <div class="value-item"><div class="value-dot"></div>Confecção sob medida e exclusiva</div>
+      <div class="value-item"><div class="value-dot"></div>Materiais sustentáveis e éticos</div>
+    </div>
+    <a href="#servicos" class="btn-primary reveal delay-5" style="width: fit-content; margin-top: 1rem;">Ver serviços</a>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow reveal">O que fazemos</div>
+      <h2 class="section-title reveal delay-1">Nossos<br><em>serviços</em></h2>
+    </div>
+    <a href="#contato" class="btn-primary reveal delay-2">Fazer um pedido</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="24" cy="19" rx="10" ry="13" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M18 11 Q24 4 30 11" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M16 16 Q24 11 32 16 M16 19 Q24 14 32 19 M16 22 Q24 17 32 22" stroke="currentColor" stroke-width="0.9" fill="none"/>
+        <circle cx="27" cy="35" r="4" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <line x1="27" y1="39" x2="27" y2="46" stroke="#B24C39" stroke-width="1"/>
+      </svg>
+      <div class="service-title">Moda Sob Medida</div>
+      <div class="service-desc">Peças únicas criadas especialmente para você, com identidade afro-contemporânea e acabamento artesanal impecável.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="service-card reveal delay-1">
+      <div class="service-num">02</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="12" width="32" height="28" rx="1" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M16 12 V8 Q24 4 32 8 V12" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M14 22 h20 M14 28 h16 M14 34 h12" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <circle cx="35" cy="34" r="5" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <line x1="35" y1="39" x2="35" y2="44" stroke="#B24C39" stroke-width="1"/>
+      </svg>
+      <div class="service-title">Coleções Exclusivas</div>
+      <div class="service-desc">Coleções temáticas com inspiração afro-brasileira, lançamentos sazonais e edições limitadas numeradas e assinadas.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="service-card reveal delay-2">
+      <div class="service-num">03</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 40 Q16 20 24 28 Q32 36 40 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <circle cx="24" cy="28" r="4" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <path d="M10 8 Q18 6 24 12 Q30 6 38 8" stroke="currentColor" stroke-width="1" fill="none"/>
+      </svg>
+      <div class="service-title">Estilismo Pessoal</div>
+      <div class="service-desc">Consultoria de imagem com foco em identidade afro-brasileira, ajudando você a expressar quem você é através da moda.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="service-card reveal delay-1">
+      <div class="service-num">04</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="20" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="30" cy="20" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M18 16 Q24 10 30 16" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <line x1="24" y1="32" x2="24" y2="44" stroke="#B24C39" stroke-width="1.2"/>
+        <circle cx="24" cy="42" r="2" stroke="#B24C39" stroke-width="1" fill="none"/>
+      </svg>
+      <div class="service-title">Acessórios Artesanais</div>
+      <div class="service-desc">Adornos e acessórios únicos com búzios, tecidos afro-brasileiros e materiais naturais, feitos com técnicas tradicionais.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="service-card reveal delay-2">
+      <div class="service-num">05</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 36 L24 10 L38 36" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        <path d="M16 28 h16" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="24" y1="36" x2="24" y2="44" stroke="#B24C39" stroke-width="1.2"/>
+        <circle cx="26" cy="40" r="3" stroke="#B24C39" stroke-width="1" fill="none"/>
+      </svg>
+      <div class="service-title">Uniformes Corporativos</div>
+      <div class="service-desc">Design de uniformes com identidade afro-contemporânea para empresas que valorizam diversidade e originalidade.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="service-card reveal delay-3">
+      <div class="service-num">06</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 12 Q24 6 36 12 L38 38 Q24 44 10 38 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M18 22 Q24 18 30 22 M18 28 Q24 24 30 28" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="24" cy="34" r="3.5" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <line x1="24" y1="37.5" x2="24" y2="44" stroke="#B24C39" stroke-width="1"/>
+      </svg>
+      <div class="service-title">Trajes para Eventos</div>
+      <div class="service-desc">Criações especiais para cerimônias, festas e eventos culturais, com toda a potência da estética afro-brasileira.</div>
+      <div class="service-arrow">
+        Ver mais
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4h14M10 1l4 3-4 3" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo">
+  <div class="processo-header">
+    <div class="section-eyebrow reveal" style="color:var(--terracota)">Como trabalhamos</div>
+    <h2 class="section-title reveal delay-1" style="color:var(--cream)">Nosso <em style="color:var(--terracota)">processo</em><br>criativo</h2>
+  </div>
+
+  <div class="processo-steps">
+    <div class="step reveal">
+      <div class="step-circle"><span class="step-num">01</span></div>
+      <div class="step-title">Consultoria</div>
+      <div class="step-desc">Entendemos sua essência, sua identidade e o que você quer manifestar através da sua vestimenta.</div>
+    </div>
+    <div class="step reveal delay-1">
+      <div class="step-circle"><span class="step-num">02</span></div>
+      <div class="step-title">Criação</div>
+      <div class="step-desc">Desenvolvemos o conceito visual e os esboços da peça, alinhando estética afro-contemporânea à sua personalidade.</div>
+    </div>
+    <div class="step reveal delay-2">
+      <div class="step-circle"><span class="step-num">03</span></div>
+      <div class="step-title">Confecção</div>
+      <div class="step-desc">Cada peça é costurada à mão com materiais selecionados, técnicas tradicionais e acabamento premium.</div>
+    </div>
+    <div class="step reveal delay-3">
+      <div class="step-circle"><span class="step-num">04</span></div>
+      <div class="step-title">Entrega</div>
+      <div class="step-desc">A peça chega até você embalada com cuidado e carinho, pronta para ser manifestada ao mundo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section id="numeros">
+  <div class="numero-item reveal">
+    <span class="numero-val" data-target="350">0</span>
+    <span class="numero-label">peças criadas</span>
+  </div>
+  <div class="numero-item reveal delay-1">
+    <span class="numero-val" data-target="200">0</span>
+    <span class="numero-label">clientes satisfeitas</span>
+  </div>
+  <div class="numero-item reveal delay-2">
+    <span class="numero-val" data-target="3">0</span>
+    <span class="numero-label">anos de história</span>
+  </div>
+  <div class="numero-item reveal delay-3">
+    <span class="numero-val" data-target="100">0</span>
+    <span class="numero-label">% artesanal</span>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="galeria-header">
+    <div class="section-eyebrow">Nossa galeria</div>
+    <h2 class="section-title" style="margin-top:0.75rem">Peças que <em>manifestam</em></h2>
+  </div>
+
+  <div class="galeria-track">
+    <!-- Itens 1-6 -->
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46 M27 50 Q40 41 53 50" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Coleção Búzio</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Vestido Ancestral</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#4B3621" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#4B3621" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46" stroke="#4B3621" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#4B3621" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#4B3621" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Traje Ritual</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46 M27 50 Q40 41 53 50" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Acessório Sagrado</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Moda Afro</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Conjunto Exclusivo</div>
+    </div>
+    <!-- Duplicata para loop contínuo -->
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46 M27 50 Q40 41 53 50" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Coleção Búzio</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Vestido Ancestral</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#4B3621" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#4B3621" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46" stroke="#4B3621" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#4B3621" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#4B3621" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Traje Ritual</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46 M27 50 Q40 41 53 50" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Acessório Sagrado</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Moda Afro</div>
+    </div>
+    <div class="galeria-item">
+      <div class="galeria-item-bg"></div>
+      <div class="galeria-item-inner">
+        <svg class="galeria-buzio-g" viewBox="0 0 80 105" fill="none">
+          <ellipse cx="40" cy="42" rx="22" ry="30" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M30 24 Q40 12 50 24" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+          <path d="M27 34 Q40 25 53 34 M27 38 Q40 29 53 38 M27 42 Q40 33 53 42 M27 46 Q40 37 53 46" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+          <circle cx="45" cy="76" r="7" stroke="#F5F5DC" stroke-width="1" fill="none"/>
+          <line x1="45" y1="83" x2="45" y2="98" stroke="#F5F5DC" stroke-width="0.9"/>
+        </svg>
+      </div>
+      <div class="galeria-item-label">Conjunto Exclusivo</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="section-eyebrow reveal">Depoimentos</div>
+  <h2 class="section-title reveal delay-1" style="margin-top:0.75rem">O que dizem<br><em>sobre nós</em></h2>
+
+  <div class="dep-grid">
+    <div class="dep-card reveal">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">A Manifest° não faz só roupas. Ela fez com que eu me sentisse inteira, conectada com minhas raízes. Cada detalhe da peça conta uma história que é minha também.</p>
+      <div class="dep-author">
+        <div class="dep-avatar">AM</div>
+        <div>
+          <div class="dep-name">Ana Maria S.</div>
+          <div class="dep-role">Cliente — Fortaleza, CE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card reveal delay-1">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Encomendei um traje para uma cerimônia especial e o resultado foi além do que imaginava. A qualidade artesanal é incomparável, cada costura é um ato de amor.</p>
+      <div class="dep-author">
+        <div class="dep-avatar">JF</div>
+        <div>
+          <div class="dep-name">Juliana F.</div>
+          <div class="dep-role">Cliente — Recife, PE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card reveal delay-2">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Trabalho com eventos culturais e a Manifest° se tornou minha parceira essencial. Profissionalismo, criatividade e profundo respeito pela estética afro-brasileira.</p>
+      <div class="dep-author">
+        <div class="dep-avatar">RL</div>
+        <div>
+          <div class="dep-name">Roberta L.</div>
+          <div class="dep-role">Produtora Cultural — Salvador, BA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="cta-deco">
+    <div class="cta-circle"></div>
+    <div class="cta-circle"></div>
+    <div class="cta-circle"></div>
+  </div>
+  <div class="cta-content">
+    <div class="cta-eyebrow reveal">Pronta para manifestar</div>
+    <h2 class="cta-title reveal delay-1">
+      Sua identidade<br>
+      <em>merece ser</em><br>
+      manifestada
+    </h2>
+    <p class="cta-sub reveal delay-2">Entre em contato e dê início à criação de algo único, poderoso e verdadeiramente seu.</p>
+    <div class="cta-buttons reveal delay-3">
+      <a href="#contato" class="btn-primary">Fazer um pedido</a>
+      <a href="#servicos" class="btn-outline">Ver serviços</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contato-info reveal-left">
+    <div>
+      <div class="section-eyebrow">Fale conosco</div>
+      <h2 class="section-title" style="margin-top:0.75rem">Vamos <em>criar</em><br>juntas</h2>
+    </div>
+
+    <div>
+      <div class="contato-item">
+        <span class="contato-item-label">WhatsApp</span>
+        <span class="contato-item-val">(85) 9 9999-9999</span>
+      </div>
+      <div class="contato-item" style="margin-top:1.5rem">
+        <span class="contato-item-label">E-mail</span>
+        <span class="contato-item-val">contato@manifestatelier.com</span>
+      </div>
+      <div class="contato-item" style="margin-top:1.5rem">
+        <span class="contato-item-label">Instagram</span>
+        <span class="contato-item-val">@manifest.atelier</span>
+      </div>
+      <div class="contato-item" style="margin-top:1.5rem">
+        <span class="contato-item-label">Localização</span>
+        <span class="contato-item-val">Fortaleza, Ceará — Brasil</span>
+      </div>
+    </div>
+
+    <div class="contato-social">
+      <a href="#" class="social-link">Instagram</a>
+      <span style="color:rgba(75,54,33,0.2)">·</span>
+      <a href="#" class="social-link">WhatsApp</a>
+      <span style="color:rgba(75,54,33,0.2)">·</span>
+      <a href="#" class="social-link">Pinterest</a>
+    </div>
+  </div>
+
+  <div class="contato-form reveal-right">
+    <div class="form-group">
+      <label class="form-label">Seu nome</label>
+      <input type="text" class="form-input" placeholder="Como você se chama?">
+    </div>
+    <div class="form-group">
+      <label class="form-label">E-mail</label>
+      <input type="email" class="form-input" placeholder="seu@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Serviço de interesse</label>
+      <input type="text" class="form-input" placeholder="Ex: Moda sob medida, traje para evento...">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Mensagem</label>
+      <textarea class="form-textarea" placeholder="Conte-me sua ideia..."></textarea>
+    </div>
+    <button class="btn-primary" style="width:100%; text-align:center; cursor:none; font-family:inherit">
+      Enviar mensagem
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="footer-logo">
+      <svg width="28" height="38" viewBox="0 0 40 55" fill="none">
+        <ellipse cx="20" cy="22" rx="11" ry="15" stroke="#F5F5DC" stroke-width="1.5"/>
+        <path d="M14 13 Q20 6 26 13" stroke="#F5F5DC" stroke-width="1.2" fill="none"/>
+        <path d="M12 19 Q20 13 28 19 M12 22 Q20 16 28 22 M12 25 Q20 19 28 25" stroke="#F5F5DC" stroke-width="0.8" fill="none"/>
+        <circle cx="22" cy="39" r="3.5" stroke="#B24C39" stroke-width="1.2" fill="none"/>
+        <line x1="22" y1="42.5" x2="22" y2="52" stroke="#B24C39" stroke-width="1"/>
+      </svg>
+      MANIFEST°
+    </a>
+    <p class="footer-tagline">
+      "Onde ancestralidade se torna arte vestível — um manifesto de identidade em cada costura."
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <div class="footer-col-title">Serviços</div>
+    <a href="#">Moda Sob Medida</a>
+    <a href="#">Coleções Exclusivas</a>
+    <a href="#">Estilismo Pessoal</a>
+    <a href="#">Acessórios</a>
+    <a href="#">Uniformes</a>
+  </div>
+
+  <div class="footer-col">
+    <div class="footer-col-title">Atelier</div>
+    <a href="#sobre">Sobre nós</a>
+    <a href="#processo">Nosso processo</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#">Blog</a>
+  </div>
+
+  <div class="footer-col">
+    <div class="footer-col-title">Contato</div>
+    <a href="#">WhatsApp</a>
+    <a href="#">Instagram</a>
+    <a href="#">E-mail</a>
+    <a href="#">Fortaleza, CE</a>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span class="footer-copy">© 2025 Manifest° Atelier. Todos os direitos reservados.</span>
+  <span class="footer-made">Feito com <span>♥</span> e ancestralidade</span>
+</div>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2400);
+  });
+
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.width = '60px'; ring.style.height = '60px';
+      ring.style.opacity = '0.8';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = '40px'; ring.style.height = '40px';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // NAV SCROLL
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+
+  // COUNTER ANIMATION
+  function animateCounter(el, target, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.round(start) + (el.closest('.numero-item') ? '' : '');
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  // Hero counter
+  const heroC = document.getElementById('c1');
+  let heroStarted = false;
+  const heroObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !heroStarted) {
+      heroStarted = true;
+      animateCounter(heroC, 350, 2000);
+    }
+  });
+  heroObs.observe(heroC);
+
+  // Section counters
+  document.querySelectorAll('.numero-val[data-target]').forEach(el => {
+    let started = false;
+    const o = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        started = true;
+        animateCounter(el, parseInt(el.dataset.target), 1600);
+      }
+    });
+    o.observe(el);
+  });
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
